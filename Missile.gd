@@ -14,7 +14,7 @@ func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
 	translate(Vector3(-20 * delta, 0, 0))
-	var energy = exp(0.05 * (translation.z + 50)) - 1
+	var energy = exp(0.055 * (translation.z + 50)) - 1
 	get_node("OmniLight").light_energy = energy#(50 - translation.z) / distance_to_energy_scale
 	
 	if translation.z < -50:
