@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://sunet-sky_0094.hdr" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Portal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Missile.tscn" type="PackedScene" id=10]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -74,7 +75,7 @@ dof_blur_near_distance = 2.0
 dof_blur_near_transition = 1.0
 dof_blur_near_amount = 0.1
 dof_blur_near_quality = 1
-glow_enabled = false
+glow_enabled = true
 glow_levels/1 = false
 glow_levels/2 = false
 glow_levels/3 = true
@@ -93,7 +94,7 @@ adjustment_enabled = false
 adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
-_sections_unfolded = [ "Ambient Light", "Background" ]
+_sections_unfolded = [ "Ambient Light", "Background", "Glow" ]
 
 [sub_resource type="SpatialMaterial" id=3]
 
@@ -292,5 +293,9 @@ shadow_atlas_quad_3 = 4
 [node name="Portal" parent="ViewportQuad/Viewport" index="0" instance=ExtResource( 8 )]
 
 [node name="HUD" parent="." index="6" instance=ExtResource( 9 )]
+
+[node name="Missile" parent="." index="7" instance=ExtResource( 10 )]
+
+transform = Transform( -1.00536e-08, 0, -0.2, 0, 0.2, 0, 0.23, 0, -8.74228e-09, 2.70934, 1.19533, -0.919019 )
 
 

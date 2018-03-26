@@ -16,7 +16,7 @@ func _ready():
 	for i in (range(number_of_road_tiles)):
 		road.spawn_new_road(i * 20)
 	
-	road.free()
+	road.queue_free()
 	
 	# Get the viewport and clear it
 	var viewport = get_node("ViewportQuad/Viewport")

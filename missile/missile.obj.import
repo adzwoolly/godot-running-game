@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/missile.obj-8b80b7de4c9a8aca2aa68174778eb74a.mesh"
+
+[deps]
+
+files=[ "res://.import/missile.obj-8b80b7de4c9a8aca2aa68174778eb74a.mesh" ]
+
+source_file="res://missile/missile.obj"
+source_md5="93a54d82ab9e76ac965da59e1109f1fe"
+
+dest_files=[ "res://.import/missile.obj-8b80b7de4c9a8aca2aa68174778eb74a.mesh", "res://.import/missile.obj-8b80b7de4c9a8aca2aa68174778eb74a.mesh" ]
+dest_md5="6bfbc6fc3ed049665b5b252d48dcd315"
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

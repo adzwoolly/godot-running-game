@@ -3,8 +3,15 @@ extends Spatial
 enum positions {
 	LEFT = 0
 	MIDDLE = 1
-	RIGHT=2
+	RIGHT = 2
 }
+var position_vectors = {
+	0: Vector3(-2.5, 0, -1.5),
+	1: Vector3(0, 0, -1.5),
+	2: Vector3(2.5, 0, -1.5)
+}
+
+var key_press_dict = {}
 
 var left_key_released = true
 var right_key_released = true
@@ -25,22 +32,14 @@ func _ready():
 func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
-	if position == positions.LEFT and translation.x >= -2:
-		translate(move_direction * delta)
-	if position == positions.MIDDLE and (translation.x < -0.02 or translation.x > 0.02):
-		translate(move_direction * delta)
-	if position == positions.RIGHT and translation.x <= 2:
-		translate(move_direction * delta)
-	
-	check_key_ups()
-	
-	if Input.is_key_pressed(KEY_LEFT) and left_key_released:
-		left_key_released = false
+	move_to(delta, position_vectors[position], 5)
+
+func _input(event):
+	if event.is_action_pressed("ui_left"):
 		move_left()
-	if Input.is_key_pressed(KEY_RIGHT) and right_key_released:
-		right_key_released = false
+	if event.is_action_pressed("ui_right"):
 		move_right()
-	if Input.is_key_pressed(KEY_UP) and up_key_released and jump_animation_complete:
+	if event.is_action_pressed("ui_up") and jump_animation_complete:
 		up_key_released = false
 		jump_animation_complete = false
 		animation.play("jump-animation", 0.01)
@@ -54,17 +53,17 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func move_left():
 	if position != positions.LEFT:
 		position = position - 1
-		move_direction = Vector3(2.5, 0, 0)
 
 func move_right():
 	if position != positions.RIGHT:
 		position = position + 1
-		move_direction = Vector3(-2.5, 0, 0)
-		
-func check_key_ups():
-	if !Input.is_key_pressed(KEY_LEFT):
-		left_key_released = true
-	if !Input.is_key_pressed(KEY_RIGHT):
-		right_key_released = true
-	if !Input.is_key_pressed(KEY_UP):
-		up_key_released = true
+
+func move_to(delta, target_position, speed):
+	var current_position = translation
+	if current_position.distance_to(target_position) > 0.05:
+		var x_diff = target_position.x - current_position.x
+		var y_diff = target_position.y - current_position.y
+		var z_diff = target_position.z - current_position.z
+		var total_diff = abs(x_diff) + abs(y_diff) + abs(z_diff)
+		var velocity = Vector3(x_diff / total_diff, y_diff / total_diff, z_diff / total_diff) * speed
+		global_translate(velocity * delta)
