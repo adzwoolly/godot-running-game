@@ -1,14 +1,16 @@
 extends Spatial
 
+const missile_scene = preload("res://Missile.tscn")
+
 enum positions {
 	LEFT = 0
 	MIDDLE = 1
 	RIGHT = 2
 }
 var position_vectors = {
-	0: Vector3(-2.5, 0, -1.5),
-	1: Vector3(0, 0, -1.5),
-	2: Vector3(2.5, 0, -1.5)
+	0: Vector3(-2.5, 0, -1.2),
+	1: Vector3(0, 0, -1.2),
+	2: Vector3(2.5, 0, -1.2)
 }
 
 var key_press_dict = {}
@@ -43,6 +45,8 @@ func _input(event):
 		up_key_released = false
 		jump_animation_complete = false
 		animation.play("jump-animation", 0.01)
+	if event.is_action_pressed("ui_accept"):
+		fire_missile()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	animation.play("run-animation", 0.2)
@@ -67,3 +71,9 @@ func move_to(delta, target_position, speed):
 		var total_diff = abs(x_diff) + abs(y_diff) + abs(z_diff)
 		var velocity = Vector3(x_diff / total_diff, y_diff / total_diff, z_diff / total_diff) * speed
 		global_translate(velocity * delta)
+
+func fire_missile():
+	print ("firing missile!")
+	var missile = missile_scene.instance()
+	get_tree().root.add_child(missile)
+	missile.global_translate(translation + Vector3(0, 1.8, -1))
