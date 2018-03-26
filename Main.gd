@@ -51,4 +51,4 @@ func lightning(delta):
 
 func modify_score(amount):
 	score = score + amount
-	get_tree().root.get_node("Main/HUD/Panel/Score Value").text = str(score)
+	get_tree().root.get_node("Main/HUD/Score Panel/Score Value").text = str(score)
