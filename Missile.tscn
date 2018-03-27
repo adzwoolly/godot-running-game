@@ -110,15 +110,15 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo" ]
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=3]
 
 offsets = PoolRealArray( 0, 0.43787, 0.467456, 1 )
 colors = PoolColorArray( 1, 0, 0, 1, 1, 0.398438, 0, 1, 0.359375, 0.359375, 0.359375, 1, 0.179688, 0.179688, 0.179688, 1 )
 
-[sub_resource type="GradientTexture" id=9]
+[sub_resource type="GradientTexture" id=4]
 
 flags = 4
-gradient = SubResource( 8 )
+gradient = SubResource( 3 )
 width = 2048
 
 [sub_resource type="ParticlesMaterial" id=5]
@@ -148,7 +148,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
-color_ramp = SubResource( 9 )
+color_ramp = SubResource( 4 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -158,7 +158,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Damping", "Gravity", "Initial Velocity", "Spread" ]
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=6]
 
 render_priority = 0
 flags_transparent = false
@@ -212,14 +212,14 @@ _sections_unfolded = [ "Vertex Color" ]
 
 [sub_resource type="SphereMesh" id=7]
 
-material = SubResource( 10 )
+material = SubResource( 6 )
 radius = 0.1
 height = 0.2
 radial_segments = 64
 rings = 32
 is_hemisphere = false
 
-[node name="Missile" type="Spatial"]
+[node name="Missile" type="Spatial" index="0"]
 
 transform = Transform( -1.00536e-08, 0, -0.2, 0, 0.2, 0, 0.23, 0, -8.74228e-09, 0, 0, 0 )
 script = ExtResource( 1 )

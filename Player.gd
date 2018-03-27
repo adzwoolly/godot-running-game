@@ -12,28 +12,17 @@ var position_vectors = {
 	1: Vector3(0, 0, -1.2),
 	2: Vector3(2.5, 0, -1.2)
 }
-
-var key_press_dict = {}
-
-var left_key_released = true
-var right_key_released = true
-var up_key_released = true
+var position = positions.MIDDLE
 
 var jump_animation_complete = true
-
-var position = positions.MIDDLE
-var move_direction = Vector3()
-
 var animation
 
 func _ready():
-	# Called every time the node is added to the scene.
 	animation = get_node("AnimationPlayer")
 	animation.play("run-animation")
 
 func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
+	# Called every frame. Delta is time since last frame.
 	move_to(delta, position_vectors[position], 5)
 
 func _input(event):
@@ -42,9 +31,7 @@ func _input(event):
 	if event.is_action_pressed("ui_right"):
 		move_right()
 	if event.is_action_pressed("ui_up") and jump_animation_complete:
-		up_key_released = false
-		jump_animation_complete = false
-		animation.play("jump-animation", 0.01)
+		jump()
 	if event.is_action_pressed("ui_accept"):
 		fire_missile()
 
@@ -61,6 +48,10 @@ func move_left():
 func move_right():
 	if position != positions.RIGHT:
 		position = position + 1
+
+func jump():
+	jump_animation_complete = false
+	animation.play("jump-animation", 0.01)
 
 func move_to(delta, target_position, speed):
 	var current_position = translation
