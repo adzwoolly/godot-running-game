@@ -17,6 +17,9 @@ var position = positions.MIDDLE
 var jump_animation_complete = true
 var animation
 
+export var fire_missile_cooldown = 2
+var fire_missile_timer = 0
+
 func _ready():
 	animation = get_node("AnimationPlayer")
 	animation.play("run-animation")
@@ -24,6 +27,9 @@ func _ready():
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	move_to(delta, position_vectors[position], 5)
+	
+	fire_missile_timer = max(fire_missile_timer - delta, 0)
+	get_tree().root.get_node("Main/HUD").setMissileCooldownDecimal(1 - (fire_missile_timer / fire_missile_cooldown))
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):
@@ -64,7 +70,8 @@ func move_to(delta, target_position, speed):
 		global_translate(velocity * delta)
 
 func fire_missile():
-	print ("firing missile!")
-	var missile = missile_scene.instance()
-	get_tree().root.add_child(missile)
-	missile.global_translate(translation + Vector3(0, 1.8, -1))
+	if fire_missile_timer == 0:
+		fire_missile_timer = fire_missile_cooldown
+		var missile = missile_scene.instance()
+		get_tree().root.add_child(missile)
+		missile.global_translate(translation + Vector3(0, 1.8, -1))

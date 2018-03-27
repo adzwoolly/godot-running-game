@@ -219,7 +219,7 @@ radial_segments = 64
 rings = 32
 is_hemisphere = false
 
-[node name="Missile" type="Spatial" index="0"]
+[node name="Missile" type="Spatial"]
 
 transform = Transform( -1.00536e-08, 0, -0.2, 0, 0.2, 0, 0.23, 0, -8.74228e-09, 0, 0, 0 )
 script = ExtResource( 1 )

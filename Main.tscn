@@ -199,6 +199,7 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( -1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, -0.918621 )
 _sections_unfolded = [ "Transform" ]
+fire_missile_cooldown = 2
 
 [node name="Torch" type="Spatial" parent="Player" index="2"]
 
