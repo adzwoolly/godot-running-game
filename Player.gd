@@ -29,7 +29,7 @@ func _process(delta):
 	move_to(delta, position_vectors[position], 5)
 	
 	fire_missile_timer = max(fire_missile_timer - delta, 0)
-	get_tree().root.get_node("Main/HUD").setMissileCooldownDecimal(1 - (fire_missile_timer / fire_missile_cooldown))
+	get_tree().root.get_node("Main/HUD").set_missile_cooldown_decimal(1 - (fire_missile_timer / fire_missile_cooldown))
 
 func _input(event):
 	if event.is_action_pressed("ui_left"):
