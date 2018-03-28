@@ -152,7 +152,7 @@ size = Vector2( 5, 3 )
 subdivide_width = 0
 subdivide_depth = 0
 
-[node name="Main" type="Spatial" index="0"]
+[node name="Main" type="Spatial"]
 
 script = ExtResource( 1 )
 number_of_road_tiles = 4

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Barrier.OBJ-95546bcbe45df010f39e05431d353f2f.mesh"
+
+[deps]
+
+files=[ "res://.import/Barrier.OBJ-95546bcbe45df010f39e05431d353f2f.mesh" ]
+
+source_file="res://barrier/Barrier.OBJ"
+source_md5="6678906bd33b0ee7ee55f29fd52457d3"
+
+dest_files=[ "res://.import/Barrier.OBJ-95546bcbe45df010f39e05431d353f2f.mesh", "res://.import/Barrier.OBJ-95546bcbe45df010f39e05431d353f2f.mesh" ]
+dest_md5="8e8272708548e556e0178075d2da02de"
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

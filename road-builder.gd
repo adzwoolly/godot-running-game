@@ -1,6 +1,9 @@
 extends Spatial
 
 const road_scene = preload("res://Road.tscn")
+const pickup_scene = preload("res://GoodPickup.tscn")
+const barrier_scene = preload("res://Barrier.tscn")
+
 var build_distance
 
 func _ready():
@@ -23,12 +26,22 @@ func spawn_new_road(distance_ahead):
 	get_parent().add_child(clone)
 	clone.global_transform.origin.z = global_transform.origin.z - distance_ahead
 	spawn_new_pickup(distance_ahead)
+	spawn_new_barrier(distance_ahead)
 
 func spawn_new_pickup(rough_distance_ahead):
-	var pickup = load("res://GoodPickup.tscn").instance()
+	var pickup = pickup_scene.instance()
 	get_parent().add_child(pickup)
 	var distance_variation = rand_range(-5, 5)
 	pickup.global_transform.origin.z = global_transform.origin.z - (rough_distance_ahead + distance_variation)
 	var spawn_options = [-2.5, 0, 2.5]
 	var chosen_option = randi() % 3
 	pickup.translate(Vector3(spawn_options[chosen_option], 1.4, 0))
+
+func spawn_new_barrier(rough_distance_ahead):
+	var barrier = barrier_scene.instance()
+	get_parent().add_child(barrier)
+	var distance_variation = rand_range(-5, 5)
+	barrier.global_transform.origin.z = global_transform.origin.z - (rough_distance_ahead + distance_variation)
+	var spawn_options = [-2.5, 0, 2.5]
+	var chosen_option = randi() % 3
+	barrier.translate(Vector3(spawn_options[chosen_option], 0, 0))
